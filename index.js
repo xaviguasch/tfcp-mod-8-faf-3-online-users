@@ -16,18 +16,23 @@ async function getUsers() {
 }
 
 function getUserDiv(user) {
-  return `
-          <div class="my-online-user">
-              <div class="user-username">${user.username}</div>
-              <div class="user-online"></div>
-          </div>
-        `
+  return `<div class="my-online-user">
+      <div class="user-username">${user.username}</div>
+      <div class="user-online"></div>
+  </div>`
 }
 
 getUsers().then((users) => {
   let sampleUser = users[0]
 
-  document.body.innerHTML = `<div class="my-online-users">
-                              ${users.map((user) => getUserDiv(user)).join('')}
-                            </div>`
+  document.body.innerHTML = `
+  <div class="header">Header</div>
+    <div class="container">
+      <div class="my-online-users">
+          ${users.map((user) => getUserDiv(user)).join('')}
+      </div>
+      <div class="main-content">Main Content</div>
+    </div>
+  <div class="footer">Footer</div>
+  `
 })
