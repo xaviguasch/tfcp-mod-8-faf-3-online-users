@@ -1,13 +1,12 @@
 /* 
-    1. 
+    2. 
     
-    Load users from users.json (originally from https://jsonplaceholder.typicode.com/users)
+    Write a getUserDiv function
     
-    Create a simple component that displays the user's username 
-        -Alongside a green circle
-        -The username and circle should be in individual divs
-        -Both should be vertically and horizontally centered
-        -The component should only be wide enough to Fit its Content (and some padding)
+    Create a Flexbox container my-online-users
+    
+    Display the users vertically
+        -Fill all available space
 */
 
 async function getUsers() {
@@ -16,14 +15,19 @@ async function getUsers() {
   return users
 }
 
+function getUserDiv(user) {
+  return `
+          <div class="my-online-user">
+              <div class="user-username">${user.username}</div>
+              <div class="user-online"></div>
+          </div>
+        `
+}
+
 getUsers().then((users) => {
   let sampleUser = users[0]
-  let userDiv = `
-      <div class="my-online-user">
-          <div class="user-username">${sampleUser.username}</div>
-          <div class="user-online"></div>
-      </div>
-  `
 
-  document.body.innerHTML = userDiv
+  document.body.innerHTML = `<div class="my-online-users">
+                              ${users.map((user) => getUserDiv(user)).join('')}
+                            </div>`
 })
